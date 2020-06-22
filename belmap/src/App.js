@@ -1,7 +1,8 @@
-import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, {Component} from 'react'
+import { Map as LeafletMap, TileLayer} from 'react-leaflet';
+import Legend from "./Legend";
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <LeafletMap
@@ -19,11 +20,7 @@ class App extends React.Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={[53.715076, 28.23800]}>
-          <Popup>
-            Popup for any custom information.
-          </Popup>
-        </Marker>
+        <Legend/>
       </LeafletMap>
     );
   }
