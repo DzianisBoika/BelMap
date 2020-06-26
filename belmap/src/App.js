@@ -10,7 +10,7 @@ class App extends Component {
         zoom={7.2}
         maxZoom={10}
         attributionControl={true}
-        zoomControl={true}
+        zoomControl={false}
         doubleClickZoom={true}
         scrollWheelZoom={true}
         dragging={true}

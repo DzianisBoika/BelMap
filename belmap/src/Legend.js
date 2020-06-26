@@ -5,26 +5,30 @@ import './Legend.css';
 class Legend extends MapControl {
   
     createLeafletElement(props) {}
+    constructor() {
+        super();
+        this.state = { users: [] };
+      }
 
+    
     componentDidMount() {
+        
+    const legend = L.control({ position: "topleft" });
 
-    const legend = L.control({ position: "topright" });
-
+    fetch('https://reqres.in/api/users')
+      .then(response => response.json())
+      .then(json => this.setState({ users: json.data }));
+        
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
-      const info = [0, 10, 20, 50, 100, 200, 500, 1000];
+      const info = ['Господи',' бресте', 'ОМОН', 'ссср', '#моягодовщинавтвиттере', 'Поздравляю', 'оооо','#Emergency1975HauntsIndia','#IdRather_ThanVoteForTrump','#JBalvinIsOverParty'];
       let labels = [];
-      let from;
-      let to;
-
+        
       for (let i = 0; i < info.length; i++) {
 
-
         labels.push(
-          '<i style="background:' +
-            "#800026" +
-            '"></i> ' +
-            info[i]
+            i+1+'.'+' '+info[i]
+            
         );
       }
 
