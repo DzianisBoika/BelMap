@@ -14,10 +14,20 @@ class Legend extends MapControl {
     componentDidMount() {
         
     const legend = L.control({ position: "topleft" });
-
-    fetch('https://reqres.in/api/users')
-      .then(response => response.json())
-      .then(json => this.setState({ users: json.data }));
+    const url = "https://api.twitter.com/1.1/trends/place.json";
+    
+    fetch(url,{
+      method:"GET",
+      headers: {
+        "Authorization": "QDm4JjnOjkYh8dc38lb5vC2tVkFCswenVi9P1Ao9PnxWUV7znk",
+      }
+    })
+      .then(function(data) {
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
         
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
