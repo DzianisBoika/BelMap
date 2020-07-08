@@ -3,6 +3,36 @@ import { Map as LeafletMap, TileLayer} from 'react-leaflet';
 import Legend from "./Legend";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+    }
+  }
+
+  componentDidMount() {
+    var Twitter = require('twitter');
+
+  var client = new Twitter({
+   consumer_key: 'NBv8u4VsQmxwsYE9wQlAKnrTY',
+      consumer_secret:'8Zgi10TR3qzvGH1PqHVnMGBQx0EY0okyNzfxneZ7Us62EDihNQ',
+    access_token_key: '1088155195123662848-22n7PR66IJC3aS8oMA1AdvL2NyPsUR',
+    access_token_secret: 'qjW5jQfnYuO5kaQxvl1JEgulxT9Z0BRpU7Yiyuurv84wF'
+    });
+
+  var params = {screen_name: 'nodejs'};
+  client.get('http://localhost:8080/', params, function(error, tweets, response) {
+    if (!error) {
+      console.log(JSON.stringify(tweets));
+    } else {
+      throw error
+    }
+  })}
+  //   var targetUrl = 'http://localhost:8080/'
+  //   fetch(targetUrl)
+  //   .then(response => response.json())
+  //   .then(data => this.setState({hits: data.hits }));
+  // }
+
   render() {
     return (
       <LeafletMap
@@ -20,7 +50,7 @@ class App extends Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Legend/>
+        <Legend data={this.tweets}/>
       </LeafletMap>
     );
   }
