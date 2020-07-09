@@ -11,11 +11,11 @@ import (
 
 func getTrends(w http.ResponseWriter, req *http.Request) {
 	config := oauth1.NewConfig(
-		"NBv8u4VsQmxwsYE9wQlAKnrTY",
-		"8Zgi10TR3qzvGH1PqHVnMGBQx0EY0okyNzfxneZ7Us62EDihNQ")
+		"t1QH6skWrmz7h6VYfI5F6Gp1G",
+		"eLrOM1nOU2rM3JdhE4zNHM4DN7urH73srD2YoxfGwhGSboprfR")
 	token := oauth1.NewToken(
-		"1088155195123662848-22n7PR66IJC3aS8oMA1AdvL2NyPsUR",
-		"qjW5jQfnYuO5kaQxvl1JEgulxT9Z0BRpU7Yiyuurv84wF")
+		"1088155195123662848-be4Tq1eft4AIWOfksttsAWRDUWOdNB",
+		"YXBcqX52lT1YmtcM5s6FSvA3Ty6k6UhK9tbMv87ASkrLa")
 
 	enableCors(&w)
 
@@ -37,8 +37,8 @@ func getTrends(w http.ResponseWriter, req *http.Request) {
 		for j := 0; j < 10; j++ {
 			fmt.Println(trends[i].Trends[j].Name)
 		}
+		json.NewEncoder(w).Encode(trends)
 	}
-	json.NewEncoder(w).Encode(trends)
 }
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
