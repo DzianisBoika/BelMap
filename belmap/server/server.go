@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
@@ -35,7 +36,7 @@ func getTrends(w http.ResponseWriter, req *http.Request) {
 
 	for i := 0; i < len(trends); i++ {
 		for j := 0; j < 10; j++ {
-			fmt.Println(trends[i].Trends[j].Name)
+			fmt.Println(trends[i].Locations)
 		}
 		json.NewEncoder(w).Encode(trends)
 	}
@@ -47,7 +48,7 @@ func enableCors(w *http.ResponseWriter) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
 	http.HandleFunc("/", getTrends)
-
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }

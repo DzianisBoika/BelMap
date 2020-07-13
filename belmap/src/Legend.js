@@ -3,40 +3,39 @@ import L from "leaflet";
 import './Legend.css';
 
 class Legend extends MapControl {
-  
-    createLeafletElement(props) {}
-    constructor(props) {
-        super(props);
-        this.state = { 
-        
-        }
-      }
-
+    state = {
+      isLoaded: true,
+      trend: [],
+      location: [],
+    };
     
-    componentDidMount() {
+    createLeafletElement(props) {}
+   
+    async componentDidMount() {
+  
+    const url = 'http://localhost:8080/'
+    const response= await fetch(url);
+    const data = await response.json()
+    this.setState({trend: data[0].trends, isLoaded:false, location:data[0]})
+      
     const legend = L.control({ position: "topleft" });
-    const{ data}=this.props
+      
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
-      var info = ['Господи',' бресте', 'ОМОН', 'ссср', '#моягодовщинавтвиттере', 'Поздравляю', 'оооо','#Emergency1975HauntsIndia','#IdRather_ThanVoteForTrump','#JBalvinIsOverParty'];
       let labels = [];
-      
-     for (let i = 0; i < info.length; i++) {
+      for (let i = 0; i < 10; i++) {
         labels.push(
-             i+1+'.'+' '+ data[i]
-        );
-       
-        
+          i+1+'.'+' '+ this.state.trend[i].name
+        );   
       }
-      console.log(data)
-      console.log(info)
-
+      
       div.innerHTML = labels.join("<br>");
       return div;
     };
 
     const { map } = this.props.leaflet;
     legend.addTo(map);
+
   }
 }
 
