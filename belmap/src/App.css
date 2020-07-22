@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.geojson{
+  color: slateblue;
+  background-color: slateblue;
+  /* color: '#fffeff';
+  background: "#fffeff"; */
+}
+
+.geojson:hover{
+  color: '#00f263';
+  background: "#00f263";
+}

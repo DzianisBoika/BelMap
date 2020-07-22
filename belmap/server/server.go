@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
@@ -48,7 +47,8 @@ func enableCors(w *http.ResponseWriter) {
 }
 
 func main() {
-	port := os.Getenv("PORT")
 	http.HandleFunc("/", getTrends)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":8080", nil)
+	// port := os.Getenv("PORT")
+	// http.ListenAndServe(":"+port, nil)
 }
