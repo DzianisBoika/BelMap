@@ -11,11 +11,11 @@ import (
 
 func getTrends(w http.ResponseWriter, req *http.Request) {
 	config := oauth1.NewConfig(
-		"t1QH6skWrmz7h6VYfI5F6Gp1G",
-		"eLrOM1nOU2rM3JdhE4zNHM4DN7urH73srD2YoxfGwhGSboprfR")
+		"YmxsBUxEX6RtY4YPFNAuO6wYx",
+		"Dp5VZreWr4H3RVjFqykpjS8s2kzZ9Xl6SxJrFiipxAwiSmgubd")
 	token := oauth1.NewToken(
-		"1088155195123662848-be4Tq1eft4AIWOfksttsAWRDUWOdNB",
-		"YXBcqX52lT1YmtcM5s6FSvA3Ty6k6UhK9tbMv87ASkrLa")
+		"1088155195123662848-Fpl4TrcsCAUKYdsb1wiFotcggwN1DB",
+		"qITnWW0LiRr5kYy6LMTowoqelHabjfVicAgZoOpfuJZIl")
 
 	enableCors(&w)
 
@@ -25,7 +25,8 @@ func getTrends(w http.ResponseWriter, req *http.Request) {
 	// Twitter client
 	client := twitter.NewClient(httpClient)
 
-	var place int64 = 23424765 //Belarus
+	// var place int64 = 824382 //Belarus 23424765
+	var place int64 = 825978 //Belarus 23424765
 
 	trends, _, err := client.Trends.Place(place, &twitter.TrendsPlaceParams{})
 
